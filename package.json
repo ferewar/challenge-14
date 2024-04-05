@@ -22,5 +22,9 @@
     "node": "^21.7.1",
     "sequelize": "^6.37.1",
     "sequelize-cli": "^6.6.2"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
   }
 }
