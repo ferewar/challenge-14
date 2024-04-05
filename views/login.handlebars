@@ -1,0 +1,30 @@
+{{!< layouts/main}}
+
+<header class="blog-header">
+  <h1>The <span class="highlight">Tech Blog</span></h1>
+</header>
+
+{{!-- Error message display --}}
+{{#if error}}
+  <p class="error" style="color: red;">{{error}}</p>
+{{/if}}
+
+<section class="login-form">
+  <h1>Login</h1>
+  {{!-- Display error message if it exists --}}
+  {{#if error}}
+    <p class="error" style="color: red;">{{error}}</p>
+  {{/if}}
+  <form action="/api/users/login" method="POST">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit">Log In</button>
+  </form>
+  <a href="/signup">Sign up</a>
+</section>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      {{#if loggedIn}}
+        <button id="logout-button">Logout</button>
+      {{else}}
+        <a href="/login">Login</a>
+      {{/if}}
+    </nav>
+
+    {{{body}}}
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const logoutButton = document.getElementById('logout-button');
+        if (logoutButton) {
+          logoutButton.addEventListener('click', () => {
+            fetch('/api/users/logout', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then(response => {
+              if (response.ok) {
+                window.location.href = '/';
+              } else {
+                throw new Error('Logout failed');
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+          });
+        }
+      });
+    </script>
+</body>
+</html>

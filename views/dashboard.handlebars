@@ -1,0 +1,42 @@
+{{!< layouts/main}}
+
+<h1>Dashboard</h1>
+{{#if posts.length}}
+  <div class="posts">
+    {{#each posts}}
+<div class="post" id="post-{{this.id}}">
+  <div class="view-mode">
+    <h2>{{this.title}}</h2>
+    <p>{{this.content}}</p>
+    <p>Posted on {{formatDate this.created_at}}</p>
+    <button onclick="editPost({{this.id}})">Edit</button>
+    <button onclick="deletePost({{this.id}})">Delete</button>
+  </div>
+  <div class="edit-mode" style="display: none;">
+    <input type="text" class="edit-title" value="{{this.title}}">
+    <textarea class="edit-content">{{this.content}}</textarea>
+    <button onclick="savePost({{this.id}})">Save</button>
+    <button onclick="cancelEdit({{this.id}})">Cancel</button>
+  </div>
+</div>
+{{/each}}
+  </div>
+{{else}}
+  <p>You have not created any posts yet.</p>
+{{/if}}
+<section>
+  <h2>Add New Post</h2>
+  <form id="new-post-form">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required></textarea>
+    </div>
+    <button type="submit">Add Post</button>
+  </form>
+</section>
+
+<script src="/js/dashboard.js"></script>

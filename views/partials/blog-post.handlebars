@@ -1,0 +1,14 @@
+<div class="blog-post">
+    <h2 class="title">{{title}}</h2>
+    <p class="content">{{content}}</p>
+    <p class="author">Posted by {{User.username}} on {{formatDate created_at}}</p> 
+    {{#if loggedIn}}
+    <div class="actions">
+        <button onclick="showCommentForm('{{id}}')">Comment</button>
+        {{#if userIsAuthor}}
+        <a href="/posts/edit/{{id}}" class="edit">Edit</a>
+        <button onclick="deletePost('{{id}}')">Delete</button>
+        {{/if}}
+    </div>
+    {{/if}}
+</div>
